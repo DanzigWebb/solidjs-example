@@ -9,15 +9,17 @@ const ButtonToggleContext = createContext<ContextType>();
 
 type Props = {
     onChange?: (value: any) => void;
+    defaultValue?: any;
 }
 
 export const ToggleButtonsProvider: Component<Props> = (props) => {
 
     const {
-       onChange = () => {},
+        onChange = () => {},
+        defaultValue = null,
     } = props;
 
-    const [activeBtn, setActiveBtn] = createSignal();
+    const [activeBtn, setActiveBtn] = createSignal(defaultValue);
 
     const store: ContextType = {
         activeBtn,
@@ -32,6 +34,6 @@ export const ToggleButtonsProvider: Component<Props> = (props) => {
             {props.children}
         </ButtonToggleContext.Provider>
     );
-}
+};
 
 export const useToggleButtons = () => useContext(ButtonToggleContext)!;
