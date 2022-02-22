@@ -2,20 +2,21 @@ import { Component } from 'solid-js';
 import { useToggleButtons } from './ToggleButtonProvider';
 
 type Props = {
-    index: any;
+    value: any;
 }
 
 export const ToggleButton: Component<Props> = (props) => {
-    const {index} = props;
+    const {value} = props;
     const {activeBtn, setActive} = useToggleButtons();
 
     function onClick() {
-        setActive(index);
+        setActive(value);
     }
 
     return (
         <button
-            class={`btn ${index === activeBtn() ? 'btn-active' : ''}`}
+            class="btn"
+            classList={{'btn-active': value === activeBtn()}}
             onClick={onClick}
         >
             {props.children}
