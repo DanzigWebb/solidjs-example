@@ -1,4 +1,4 @@
-import { createSignal, createContext, useContext, Accessor } from 'solid-js';
+import { createSignal, createContext, useContext, Accessor, Component } from 'solid-js';
 
 type ContextType<T = any> = {
     activeBtn: Accessor<T | undefined>;
@@ -7,13 +7,23 @@ type ContextType<T = any> = {
 
 const ButtonToggleContext = createContext<ContextType>();
 
-export function ToggleButtonsProvider(props: any) {
+type Props = {
+    onChange?: (value: any) => void;
+}
+
+export const ToggleButtonsProvider: Component<Props> = (props) => {
+
+    const {
+       onChange = () => {},
+    } = props;
+
     const [activeBtn, setActiveBtn] = createSignal();
 
     const store: ContextType = {
         activeBtn,
         setActive(btnIndex) {
             setActiveBtn(btnIndex);
+            onChange(btnIndex);
         }
     };
 
