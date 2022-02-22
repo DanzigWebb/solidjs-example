@@ -7,9 +7,9 @@ const App: Component = () => {
         <h2 class="text-4xl font-bold text-center mb-10">SolidJs examples</h2>
 
         <ToggleButtonsGroup onChange={(v) => console.log('on [ToggleButtonsGroup] changed', v)}>
-            <ToggleButton value={1}>1</ToggleButton>
-            <ToggleButton value={2}>2</ToggleButton>
-            <ToggleButton value={3} defaultChecked>3</ToggleButton>
+            <ToggleButton value={1} onCheck={(v) => console.log(typeof v)}>1</ToggleButton>
+            <ToggleButton value={2} onCheck={(v) => console.log(typeof v)}>2</ToggleButton>
+            <ToggleButton value={3} onCheck={(v) => console.log(typeof v)} defaultChecked>3</ToggleButton>
         </ToggleButtonsGroup>
     </div>
   );
