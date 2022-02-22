@@ -9,7 +9,7 @@ const App: Component = () => {
         <ToggleButtonsGroup>
             <ToggleButton value={1}>1</ToggleButton>
             <ToggleButton value={2}>2</ToggleButton>
-            <ToggleButton value={3}>3</ToggleButton>
+            <ToggleButton value={3} defaultChecked>3</ToggleButton>
         </ToggleButtonsGroup>
     </div>
   );
