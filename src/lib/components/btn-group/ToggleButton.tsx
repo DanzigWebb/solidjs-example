@@ -31,16 +31,14 @@ export const ToggleButton = <T extends any = any>(props: PropsWithChildren<Props
     * игнорируем если уже активна
     */
     function onClick() {
-        if (!(value === activeBtn())) {
-            setActive(value);
-            onCheck(value);
-        }
+        setActive(value);
+        onCheck(value);
     }
 
     return (
         <button
             class="btn"
-            classList={{'btn-active': value === activeBtn()}}
+            classList={{'btn-active': activeBtn().has(value)}}
             onClick={onClick}
         >
             {props.children}

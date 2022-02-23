@@ -15,6 +15,7 @@ const App: Component = () => {
                     setActiveBtn(v);
                 }}
                 defaultValue={activeBtn()}
+                multiple
             >
                 <ToggleButton value={1}>1</ToggleButton>
                 <ToggleButton value={2}>2</ToggleButton>
