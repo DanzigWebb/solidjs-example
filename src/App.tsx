@@ -5,6 +5,8 @@ import { Menu } from '@components/menu/Menu';
 import { Tooltip } from '@components/tooltip/Tooltip';
 import { MenuOption } from '@components/menu';
 import { Modal, ModalAction } from '@components/modal';
+import { Select } from '@components/form/select/Select';
+import { Option } from '@components/form/select/Option';
 
 const App: Component = () => {
 
@@ -43,6 +45,16 @@ const App: Component = () => {
             </ToggleButtonsGroup>
 
             <p class="p-4">Value of btn: {activeBtn()}</p>
+
+            <div class="divider my-4"/>
+            <h3 class="text-xl">Select</h3>
+            <div class="divider my-4"/>
+
+            <Select placeholder="Check your option">
+                <Option value="option 1">Option 1</Option>
+                <Option value="option 2">Option 2</Option>
+                <Option value="option 3">Option 3</Option>
+            </Select>
 
             <div class="divider my-4"/>
             <h3 class="text-xl">Menu and tooltip</h3>
