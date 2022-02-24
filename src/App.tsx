@@ -3,6 +3,7 @@ import { ToggleButton, ToggleButtonsGroup } from '@components/btn-group';
 import { createMemo, createSignal } from 'solid-js';
 import { Menu } from '@components/menu/Menu';
 import { MenuOption } from '@components/menu/MenuOption';
+import { Tooltip } from '@components/tooltip/Tooltip';
 
 const App: Component = () => {
 
@@ -38,16 +39,22 @@ const App: Component = () => {
             <p class="p-4">Value of btn: {activeBtn()}</p>
 
             <div class="divider my-4"/>
-            <h3 class="text-xl">Menu</h3>
+            <h3 class="text-xl">Menu and tooltip</h3>
             <div class="divider my-4"/>
 
-            <button
-                class="btn btn-primary"
-                ref={setMenuTrigger}
-                onClick={toggleMenu}
+
+            <Tooltip
+                message="Click to show menu"
+                placement="right"
             >
-                Menu
-            </button>
+                <button
+                    class="btn btn-primary"
+                    ref={setMenuTrigger}
+                    onClick={toggleMenu}
+                >
+                    Menu
+                </button>
+            </Tooltip>
 
             <Menu
                 isShow={isMenuShow()}
