@@ -9,8 +9,6 @@ type Props<T = any> = {
 
 export const ToggleButton = <T extends any = any>(props: PropsWithChildren<Props<T>>) => {
     const {
-        value,
-        defaultChecked = false,
         onCheck = () => {},
     } = props;
 
@@ -21,8 +19,8 @@ export const ToggleButton = <T extends any = any>(props: PropsWithChildren<Props
     * если указан соответсвующй пропс
     */
     onMount(() => {
-        if (defaultChecked) {
-            setActive(value);
+        if (props.defaultChecked) {
+            setActive(props.value);
         }
     });
 
@@ -31,14 +29,14 @@ export const ToggleButton = <T extends any = any>(props: PropsWithChildren<Props
     * игнорируем если уже активна
     */
     function onClick() {
-        setActive(value);
-        onCheck(value);
+        setActive(props.value);
+        onCheck(props.value);
     }
 
     return (
         <button
             class="btn"
-            classList={{'btn-active': activeBtn().has(value)}}
+            classList={{'btn-active': activeBtn().has(props.value)}}
             onClick={onClick}
         >
             {props.children}

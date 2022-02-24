@@ -11,14 +11,12 @@ export const ToggleButtonsGroup: Component<Props> = (props) => {
 
     const {
         onChange = () => {},
-        defaultValue = null,
-        multiple = false,
     } = props;
 
     return (
         <ToggleButtonsProvider
-            defaultValue={defaultValue}
-            multiple={multiple}
+            defaultValue={props.defaultValue}
+            multiple={props.multiple}
             onChange={onChange}
         >
             <div class="btn-group">
