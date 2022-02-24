@@ -8,6 +8,26 @@ type Props = {
     onBackdropClick?: () => void;
 }
 
+/**
+ * Создает меню с оверлеем.
+ * Внедряется в элемент, к которому примонтировано приложение;
+ * Не управляет самостоятельно своим состоянием отображения.
+ * Переключается с помощью props.show
+ *
+ * @example
+ *
+ * <Menu
+ *     isShow={isMenuShow()}
+ *     reference={menuTrigger}
+ *     onBackdropClick={toggleMenu}
+ * >
+ *     <div style={{'min-width': '150px'}} onClick={toggleMenu}>
+ *         <MenuOption>Item 1</MenuOption>
+ *         <MenuOption>Item 2</MenuOption>
+ *         <MenuOption>Item 3</MenuOption>
+ *     </div>
+ * </Menu>
+ */
 export const Menu: Component<Props> = (props) => {
 
     const [reference] = createSignal(props.reference);

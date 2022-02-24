@@ -7,6 +7,13 @@ type Props<T = any> = {
     onCheck?: (v: T) => void;
 }
 
+/**
+ * Компонент кнопки для ToggleButtonGroup.
+ * Использует контекст группы для определения состояния
+ *
+ * @example
+ * <ToggleButton value={1} defaultChecked>Some text</ToggleButton>
+ */
 export const ToggleButton = <T extends any = any>(props: PropsWithChildren<Props<T>>) => {
     const {
         onCheck = () => {},

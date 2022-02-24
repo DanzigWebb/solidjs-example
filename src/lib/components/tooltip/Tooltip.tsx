@@ -8,6 +8,19 @@ type Props = {
     placement?: Placement;
 }
 
+/**
+ * Tooltip - компонент обертка для создания подсказок
+ *
+ * @example
+ * <Tooltip
+ *    message="Tooltip Message"
+ *    placement="right"
+ * >
+ *    <button class="btn btn-primary">
+ *        Tooltip
+ *    </button>
+ * </Tooltip>
+ */
 export const Tooltip: Component<Props> = (props) => {
 
     const [show, setShow] = createSignal(false);
