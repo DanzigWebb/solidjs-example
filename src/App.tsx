@@ -2,8 +2,8 @@ import type { Component } from 'solid-js';
 import { ToggleButton, ToggleButtonsGroup } from '@components/btn-group';
 import { createMemo, createSignal } from 'solid-js';
 import { Menu } from '@components/menu/Menu';
-import { MenuOption } from '@components/menu/MenuOption';
 import { Tooltip } from '@components/tooltip/Tooltip';
+import { MenuOption } from '@components/menu';
 
 const App: Component = () => {
 
