@@ -7,6 +7,7 @@ import { MenuOption } from '@components/menu';
 import { Modal, ModalAction } from '@components/modal';
 import { Select } from '@components/form/select/Select';
 import { Option } from '@components/form/select/Option';
+import { Alert, AlertType } from '@components/alert/Alert';
 
 const App: Component = () => {
 
@@ -14,6 +15,8 @@ const App: Component = () => {
     const [menuShow, setMenuShow] = createSignal(false);
     const [menuTrigger, setMenuTrigger] = createSignal<HTMLElement>();
     const [modalShow, setModalShow] = createSignal(false);
+    const [alertShow, setAlertShow] = createSignal(false);
+    const [alertType, setAlertType] = createSignal<AlertType>();
 
     function toggleMenu() {
         setMenuShow(!menuShow());
@@ -21,6 +24,10 @@ const App: Component = () => {
 
     function toggleModal() {
         setModalShow(!modalShow());
+    }
+
+    function toggleAlert() {
+        setAlertShow(!alertShow());
     }
 
     const isMenuShow = createMemo(() => menuShow());
@@ -105,12 +112,60 @@ const App: Component = () => {
 
             <Modal isShow={modalShow()} onBackdropClick={toggleModal}>
                 <h3 class="font-bold text-lg">Congratulations random Interner user!</h3>
-                <p class="py-4">You've been selected for a chance to get one year of subscription to use Wikipedia for
-                    free!</p>
+                <p class="py-4">
+                    You've been selected for a chance to get one year of subscription to use Wikipedia for free!
+                </p>
                 <ModalAction>
                     <button class="btn" onClick={toggleModal}>Yay!</button>
                 </ModalAction>
             </Modal>
+
+            <div class="divider my-4"/>
+            <h3 class="text-xl">Alerts</h3>
+            <div class="divider my-4"/>
+
+            <div class="grid max-w-sm gap-2">
+                <button class="btn" onClick={() => {
+                    setAlertType(undefined);
+                    toggleAlert();
+                }}>
+                    Show default alert
+                </button>
+                <button class="btn btn-info" onClick={() => {
+                    setAlertType('info');
+                    toggleAlert();
+                }}>
+                    Show info alert
+                </button>
+                <button class="btn btn-error" onClick={() => {
+                    setAlertType('error');
+                    toggleAlert();
+                }}>
+                    Show error alert
+                </button>
+                <button class="btn btn-success" onClick={() => {
+                    setAlertType('success');
+                    toggleAlert();
+                }}>
+                    Show success alert
+                </button>
+                <button class="btn btn-warning" onClick={() => {
+                    setAlertType('warning');
+                    toggleAlert();
+                }}>
+                    Show warning alert
+                </button>
+            </div>
+
+            <Alert
+                show={alertShow()}
+                type={alertType()}
+            >
+                <div>We use cookies for no reason!</div>
+                <div class="flex-none">
+                    <button class="btn btn-sm btn-ghost" onClick={toggleAlert}>Ok</button>
+                </div>
+            </Alert>
         </div>
     );
 };
