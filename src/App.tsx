@@ -57,6 +57,21 @@ const App: Component = () => {
 
             <p class="p-4">Value of btn: {activeBtn()}</p>
 
+            <ToggleButtonsGroup
+                onChange={(v) => {
+                    console.log('on [ToggleButtonsGroup] changed', v);
+                    setActiveBtn(v);
+                }}
+                defaultValue={activeBtn()}
+            >
+                <ToggleButton value="prev">«</ToggleButton>
+                <ToggleButton value={1}>1</ToggleButton>
+                <ToggleButton value={2}>2</ToggleButton>
+                <ToggleButton value="" disabled>...</ToggleButton>
+                <ToggleButton value={99}>99</ToggleButton>
+                <ToggleButton value="next">»</ToggleButton>
+            </ToggleButtonsGroup>
+
             <div class="divider my-4"/>
             <h3 class="text-xl">Select</h3>
             <div class="divider my-4"/>

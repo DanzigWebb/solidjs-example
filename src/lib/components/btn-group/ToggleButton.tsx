@@ -3,6 +3,7 @@ import { useToggleButtons } from './ToggleButtonProvider';
 
 type Props<T = any> = {
     value: T;
+    disabled?: boolean;
     defaultChecked?: boolean;
     onCheck?: (v: T) => void;
 }
@@ -43,7 +44,10 @@ export const ToggleButton = <T extends any = any>(props: PropsWithChildren<Props
     return (
         <button
             class="btn"
-            classList={{'btn-active': activeBtn().has(props.value)}}
+            classList={{
+                'btn-active': activeBtn().has(props.value),
+                'btn-disabled': props.disabled,
+            }}
             onClick={onClick}
         >
             {props.children}
