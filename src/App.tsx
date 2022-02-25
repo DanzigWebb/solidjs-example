@@ -11,6 +11,8 @@ import { Alert, AlertType } from '@components/alert/Alert';
 import { Progress } from '@components/progress/Progress';
 import { Tabs } from '@components/tabs/Tabs';
 import { Tab } from '@components/tabs/Tab';
+import { Steps } from '@components/steps/Steps';
+import { Step } from '@components/steps/Step';
 
 const App: Component = () => {
 
@@ -21,6 +23,7 @@ const App: Component = () => {
     const [alertShow, setAlertShow] = createSignal(false);
     const [alertType, setAlertType] = createSignal<AlertType>();
     const [progress, setProgress] = createSignal(10);
+    const [stepIndex, setStepIndex] = createSignal(0);
 
     function toggleMenu() {
         setMenuShow(!menuShow());
@@ -37,6 +40,14 @@ const App: Component = () => {
     const isMenuShow = createMemo(() => menuShow());
 
     const selectArray = Array(20).fill(0).map((_, i) => i + 1);
+
+    function updateStepIndex(type: 'next' | 'prev') {
+        const index = type === 'next'
+            ? stepIndex() + 1
+            : stepIndex() - 1;
+
+        setStepIndex(index);
+    }
 
     return (
         <div class="container p-4">
@@ -203,6 +214,41 @@ const App: Component = () => {
             </div>
 
             <div class="divider my-4"/>
+            <h3 class="text-xl">Steps</h3>
+            <div class="divider my-4"/>
+
+            <Steps stepIndex={stepIndex} steps={[
+                [
+                    <Step label="Register" index={0}/>,
+
+                    <StepItem
+                        onNextStep={updateStepIndex}
+                        onPrevStep={updateStepIndex}
+                    >
+                        <h3 class="text-2xl">Step content 1</h3>
+                    </StepItem>
+                ],
+                [
+                    <Step label="Choose plan" index={1}/>,
+                    <StepItem
+                        onNextStep={updateStepIndex}
+                        onPrevStep={updateStepIndex}
+                    >
+                        <h3 class="text-2xl">Step content 2</h3>
+                    </StepItem>
+                ],
+                [
+                    <Step label="Purchase" index={2}/>,
+                    <StepItem
+                        onNextStep={updateStepIndex}
+                        onPrevStep={updateStepIndex}
+                    >
+                        <h3 class="text-2xl">Step content 3</h3>
+                    </StepItem>
+                ],
+            ]}/>
+
+            <div class="divider my-4"/>
             <h3 class="text-xl">Tabs</h3>
             <div class="divider my-4"/>
 
@@ -219,3 +265,28 @@ const App: Component = () => {
 };
 
 export default App;
+
+
+type StepItemProps = {
+    onNextStep: (type: 'next' | 'prev') => void;
+    onPrevStep: (type: 'next' | 'prev') => void;
+}
+
+const StepItem: Component<StepItemProps> = (props) => {
+    return (
+        <div class="flex flex-col gap-2">
+            <div>
+                {props.children}
+            </div>
+
+            <div>
+                <button class="btn btn-sm mr-2" onClick={() => props.onNextStep('next')}>
+                    next
+                </button>
+                <button class="btn btn-sm" onClick={() => props.onPrevStep('prev')}>
+                    prev
+                </button>
+            </div>
+        </div>
+    );
+};
