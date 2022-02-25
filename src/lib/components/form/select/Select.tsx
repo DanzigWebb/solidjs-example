@@ -1,6 +1,7 @@
 import { Accessor, Component, createContext, createSignal, onCleanup, Show, useContext } from 'solid-js';
 import { Portal } from 'solid-js/web';
 import usePopper from '@root/src/lib/popper/usePopper';
+import { SelectTypeEnum } from '@components/form/select/Select.type';
 
 type ContextType = {
     value: Accessor<string>
@@ -39,13 +40,20 @@ export const Select: Component<Props> = (props) => {
         setValue
     };
 
-    function onFocus() {
+    function showDropdown() {
         setShow(true);
+        focusOption();
     }
-
 
     function destroyDropdown() {
         setShow(false);
+    }
+
+    function focusOption() {
+        const optionsRef = popper()?.querySelector(`.${SelectTypeEnum.OPTION_SELECTOR}`) as HTMLButtonElement;
+        if (optionsRef) {
+            optionsRef.focus();
+        }
     }
 
     return (
@@ -55,7 +63,8 @@ export const Select: Component<Props> = (props) => {
                 class="select select-bordered"
                 value={value()}
                 placeholder={props.placeholder || ''}
-                onFocus={onFocus}
+                onClick={showDropdown}
+                onFocus={showDropdown}
             />
 
             <Show when={show()}>
@@ -67,8 +76,8 @@ export const Select: Component<Props> = (props) => {
                         <div
                             ref={setPopper}
                             style={{'min-width': reference()?.scrollWidth + 'px'}}
-                            class="p-2 shadow menu dropdown-content bg-base-200"
-                            tabIndex="0"
+                            class="p-2 shadow menu dropdown-content bg-base-200 max-h-60 overflow-y-scroll"
+                            tabIndex={0}
                         >
                             {props.children}
                         </div>

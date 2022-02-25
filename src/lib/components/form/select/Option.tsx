@@ -1,5 +1,6 @@
 import { Component } from 'solid-js';
 import { useSelect } from '@components/form/select/Select';
+import { SelectTypeEnum } from '@components/form/select/Select.type';
 
 type Props = {
     value: string;
@@ -7,9 +8,17 @@ type Props = {
 
 export const Option: Component<Props> = (props) => {
 
-    const {value, setValue} = useSelect();
+    const select = useSelect();
 
     return (
-        <li><a onClick={() => setValue(props.value)} classList={{active: value() === props.value}}>{props.children}</a></li>
+        <li>
+            <button
+                onClick={() => select.setValue(props.value)}
+                class={SelectTypeEnum.OPTION_SELECTOR}
+                classList={{active: select.value() === props.value}}
+            >
+                {props.children}
+            </button>
+        </li>
     );
 };

@@ -1,4 +1,4 @@
-import type { Component } from 'solid-js';
+import { Component, For } from 'solid-js';
 import { ToggleButton, ToggleButtonsGroup } from '@components/btn-group';
 import { createMemo, createSignal } from 'solid-js';
 import { Menu } from '@components/menu/Menu';
@@ -24,6 +24,8 @@ const App: Component = () => {
     }
 
     const isMenuShow = createMemo(() => menuShow());
+
+    const selectArray = Array(20).fill(0).map((_, i) => i + 1);
 
     return (
         <div class="container p-4">
@@ -51,9 +53,13 @@ const App: Component = () => {
             <div class="divider my-4"/>
 
             <Select placeholder="Check your option">
-                <Option value="option 1">Option 1</Option>
-                <Option value="option 2">Option 2</Option>
-                <Option value="option 3">Option 3</Option>
+                <For each={selectArray}>
+                    {item =>
+                        <Option value={'Option ' + item}>
+                            {'Option ' + item}
+                        </Option>
+                    }
+                </For>
             </Select>
 
             <div class="divider my-4"/>
