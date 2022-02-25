@@ -54,7 +54,7 @@ export const Menu: Component<Props> = (props) => {
         <Show when={props.isShow}>
             <Portal>
                 <div
-                    class="z-50 fixed top-0 bottom-0 left-0 right-0"
+                    class="overlay"
                     onClick={() => onBackdropClick()}
                 >
                     <ul
