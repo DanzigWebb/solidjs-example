@@ -8,6 +8,7 @@ import { Modal, ModalAction } from '@components/modal';
 import { Select } from '@components/form/select/Select';
 import { Option } from '@components/form/select/Option';
 import { Alert, AlertType } from '@components/alert/Alert';
+import { Progress } from '@components/progress/Progress';
 
 const App: Component = () => {
 
@@ -17,6 +18,7 @@ const App: Component = () => {
     const [modalShow, setModalShow] = createSignal(false);
     const [alertShow, setAlertShow] = createSignal(false);
     const [alertType, setAlertType] = createSignal<AlertType>();
+    const [progress, setProgress] = createSignal(10);
 
     function toggleMenu() {
         setMenuShow(!menuShow());
@@ -166,6 +168,24 @@ const App: Component = () => {
                     <button class="btn btn-sm btn-ghost" onClick={toggleAlert}>Ok</button>
                 </div>
             </Alert>
+
+            <div class="divider my-4"/>
+            <h3 class="text-xl">Progress</h3>
+            <div class="divider my-4"/>
+
+            <div className="grid gap-3 max-w-sm">
+                <input
+                    type="number"
+                    class="input input-bordered"
+                    placeholder="check progress value"
+                    value={progress()}
+                    onInput={e => setProgress(+(e.target as HTMLInputElement).value)}
+                />
+
+                <Progress value={progress()} color="primary"/>
+            </div>
+
+
         </div>
     );
 };
