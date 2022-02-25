@@ -1,7 +1,7 @@
 import { Accessor, Component, createContext, createSignal, onCleanup, Show, useContext } from 'solid-js';
 import { Portal } from 'solid-js/web';
 import usePopper from '@root/src/lib/popper/usePopper';
-import { SelectTypeEnum } from '@components/form/select/Select.type';
+import { SelectDropdown } from '@components/form/select/SelectDropdown';
 
 type ContextType = {
     value: Accessor<string>
@@ -35,26 +35,18 @@ export const Select: Component<Props> = (props) => {
         instance()?.destroy();
     });
 
-    const store: ContextType = {
-        value,
-        setValue
-    };
-
     function showDropdown() {
         setShow(true);
-        focusOption();
     }
 
     function destroyDropdown() {
         setShow(false);
     }
 
-    function focusOption() {
-        const optionsRef = popper()?.querySelector(`.${SelectTypeEnum.OPTION_SELECTOR}`) as HTMLButtonElement;
-        if (optionsRef) {
-            optionsRef.focus();
-        }
-    }
+    const store: ContextType = {
+        value,
+        setValue
+    };
 
     return (
         <SelectContext.Provider value={store}>
@@ -73,13 +65,10 @@ export const Select: Component<Props> = (props) => {
                         class="z-50 fixed top-0 bottom-0 left-0 right-0"
                         onClick={() => destroyDropdown()}
                     >
-                        <div
-                            ref={setPopper}
-                            style={{'min-width': reference()?.scrollWidth + 'px'}}
-                            class="p-2 shadow menu dropdown-content bg-base-200 max-h-60 overflow-y-scroll"
-                            tabIndex={0}
-                        >
-                            {props.children}
+                        <div ref={setPopper} style={{'min-width': reference()?.scrollWidth + 'px'}}>
+                            <SelectDropdown>
+                                {props.children}
+                            </SelectDropdown>
                         </div>
                     </div>
                 </Portal>
