@@ -9,6 +9,8 @@ import { Select } from '@components/form/select/Select';
 import { Option } from '@components/form/select/Option';
 import { Alert, AlertType } from '@components/alert/Alert';
 import { Progress } from '@components/progress/Progress';
+import { Tabs } from '@components/tabs/Tabs';
+import { Tab } from '@components/tabs/Tab';
 
 const App: Component = () => {
 
@@ -200,6 +202,17 @@ const App: Component = () => {
                 <Progress value={progress()} color="primary"/>
             </div>
 
+            <div class="divider my-4"/>
+            <h3 class="text-xl">Tabs</h3>
+            <div class="divider my-4"/>
+
+            <Tabs
+                tabList={[
+                    <Tab label="Tab 1" index={0}>Content of 1</Tab>,
+                    <Tab label="Tab 2" index={1}>Content of 2</Tab>,
+                    <Tab label="Tab 3" index={2}>Content of 3</Tab>,
+                ]}
+            />
 
         </div>
     );
