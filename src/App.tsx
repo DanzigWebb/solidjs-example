@@ -13,6 +13,7 @@ import { Tabs } from '@components/tabs/Tabs';
 import { Tab } from '@components/tabs/Tab';
 import { Steps } from '@components/steps/Steps';
 import { Step } from '@components/steps/Step';
+import { Swap } from '@components/swap/Swap';
 
 const App: Component = () => {
 
@@ -212,6 +213,15 @@ const App: Component = () => {
 
                 <Progress value={progress()} color="primary"/>
             </div>
+
+            <div class="divider my-4"/>
+            <h3 class="text-xl">Swap</h3>
+            <div class="divider my-4"/>
+
+            <Swap
+                on={<i class="fa-solid fa-sun text-4xl"/>}
+                off={<i class="fa-solid fa-moon text-4xl"/>}
+            />
 
             <div class="divider my-4"/>
             <h3 class="text-xl">Steps</h3>
