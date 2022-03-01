@@ -1,5 +1,6 @@
 import { Component } from 'solid-js';
 import { useApp } from '@root/src/demo/providers/AppProvider';
+import { Link } from 'solid-app-router';
 
 type Props = {
     show: boolean;
@@ -18,8 +19,7 @@ export const Sidebar: Component<Props> = (props) => {
             <div class="drawer-side">
                 <label class="drawer-overlay" onClick={() => app.toggleDrawer()}/>
                 <ul class="menu p-4 overflow-y-auto w-56 bg-base-300 text-base-content">
-                    <li><a>Sidebar Item 1</a></li>
-                    <li><a>Sidebar Item 2</a></li>
+                    <li><Link href="/toggle-buttons">Toggle Buttons</Link></li>
                 </ul>
             </div>
         </div>
