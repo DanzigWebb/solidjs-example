@@ -13,17 +13,18 @@ import { Tabs } from '@components/tabs/Tabs';
 import { Tab } from '@components/tabs/Tab';
 import { Steps } from '@components/steps/Steps';
 import { Step } from '@components/steps/Step';
-import { Swap } from '@components/swap/Swap';
 import { Route, Routes } from 'solid-app-router';
 import { Home } from '@root/src/demo/views/Home';
+import { AppProvider } from '@root/src/demo/providers/AppProvider';
 
 const App: Component = () => {
     return (
-        <Routes>
-            <Route path="/" element={<Home/>}>
-
-            </Route>
-        </Routes>
+        <AppProvider>
+            <Routes>
+                <Route path="/" element={<Home/>}>
+                </Route>
+            </Routes>
+        </AppProvider>
     )
 }
 
@@ -230,10 +231,10 @@ const App2: Component = () => {
             <h3 class="text-xl">Swap</h3>
             <div class="divider my-4"/>
 
-            <Swap
-                on={<i class="fa-solid fa-sun text-4xl"/>}
-                off={<i class="fa-solid fa-moon text-4xl"/>}
-            />
+            {/*<Swap*/}
+            {/*    on={<i class="fa-solid fa-sun text-4xl"/>}*/}
+            {/*    off={<i class="fa-solid fa-moon text-4xl"/>}*/}
+            {/*/>*/}
 
             <div class="divider my-4"/>
             <h3 class="text-xl">Steps</h3>
