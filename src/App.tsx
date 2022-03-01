@@ -14,8 +14,20 @@ import { Tab } from '@components/tabs/Tab';
 import { Steps } from '@components/steps/Steps';
 import { Step } from '@components/steps/Step';
 import { Swap } from '@components/swap/Swap';
+import { Route, Routes } from 'solid-app-router';
+import { Home } from '@root/src/demo/views/Home';
 
 const App: Component = () => {
+    return (
+        <Routes>
+            <Route path="/" element={<Home/>}>
+
+            </Route>
+        </Routes>
+    )
+}
+
+const App2: Component = () => {
 
     const [activeBtn, setActiveBtn] = createSignal(1);
     const [menuShow, setMenuShow] = createSignal(false);
